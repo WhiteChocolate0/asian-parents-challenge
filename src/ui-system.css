@@ -1,0 +1,77 @@
+:root {
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --page-gutter-mobile: 24px;
+  --font-ui: var(--font-body);
+  --font-meta: 'LINE Seed TW', 'PingFang TC', system-ui, sans-serif;
+  --radius-card: 20px;
+  --radius-button: 18px;
+  --radius-badge: 12px;
+}
+
+.primary-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 56px;
+  margin-inline: auto;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: var(--radius-button);
+  background: var(--action-color, #5b806c);
+  box-shadow: 0 6px 14px rgba(55, 90, 68, .15);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  transition: transform 180ms var(--ease-ui), box-shadow 180ms var(--ease-ui), background-color 180ms var(--ease-ui);
+}
+
+.primary-action__arrow {
+  width: 19px;
+  height: 19px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 180ms var(--ease-ui);
+}
+
+.primary-action:hover:not(:disabled) { background: #4f735d; box-shadow: 0 9px 18px rgba(55, 90, 68, .2); transform: translateY(-2px); }
+.primary-action:hover:not(:disabled) .primary-action__arrow { transform: translateX(3px); }
+.primary-action:active:not(:disabled) { transform: scale(.985); transition-duration: 120ms; }
+.primary-action:disabled { cursor: wait; opacity: .75; }
+.primary-action:focus-visible { outline: 3px solid #315b45; outline-offset: 3px; }
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 2px;
+  border: 0;
+  background: transparent;
+  color: #5f7165;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.back-link__arrow { font-size: 19px; line-height: 1; transition: transform var(--motion-fast) var(--ease-ui); }
+.back-link:hover { color: #29352f; }
+.back-link:hover .back-link__arrow { transform: translateX(-2px); }
+.back-link:focus-visible { outline: 3px solid #5b806c; outline-offset: 3px; }
+
+@media (max-width: 375px) { :root { --page-gutter-mobile: 20px; } }
+@media (min-width: 420px) and (max-width: 767px) { :root { --page-gutter-mobile: 26px; } }
+@media (prefers-reduced-motion: reduce) {
+  .primary-action, .primary-action__arrow, .back-link__arrow { transition: none; }
+}

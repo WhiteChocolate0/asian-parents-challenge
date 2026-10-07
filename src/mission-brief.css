@@ -1,0 +1,241 @@
+.mission-brief {
+  --mission-ink: #29352f;
+  --mission-sage: #5b806c;
+  --mission-muted: #5d6b61;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: hidden;
+  background: #f7f4ee;
+  color: var(--mission-ink);
+  font-family: var(--font-body);
+}
+
+.mission-brief__shell {
+  width: min(100%, 1120px);
+  margin-inline: auto;
+  padding: calc(14px + env(safe-area-inset-top)) var(--page-gutter-mobile) calc(16px + env(safe-area-inset-bottom));
+}
+
+.mission-brief__layout {
+  display: grid;
+  grid-template-areas: "heading" "map" "next";
+  margin-top: 19px;
+  animation: mission-brief-enter var(--motion-base) var(--ease-out-ui) both;
+}
+
+@keyframes mission-brief-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mission-heading { grid-area: heading; }
+
+.mission-heading__eyebrow {
+  margin: 0 0 10px;
+  color: var(--mission-sage);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-meta);
+  letter-spacing: .12em;
+  line-height: 1.4;
+}
+
+.mission-heading__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin: 0;
+  line-height: 1.08;
+}
+
+.mission-heading__title span {
+  font-family: var(--font-body);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+
+.mission-heading__title strong {
+  color: var(--mission-ink);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 10.5vw, 47px);
+  font-weight: 900;
+  letter-spacing: -.03em;
+}
+
+.mission-heading__summary {
+  margin: 9px 0 0;
+  color: var(--mission-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.mission-stage-map {
+  position: relative;
+  grid-area: map;
+  min-width: 0;
+  margin-top: 18px;
+}
+
+.mission-stage-map__count {
+  margin: 0 0 10px;
+  color: #547963;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.mission-stage-map__count span { padding-inline: 4px; color: #91a99a; }
+
+.mission-stage-map__route {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mission-stage-map__route::before {
+  position: absolute;
+  top: 28px;
+  right: 16.667%;
+  left: 16.667%;
+  height: 1px;
+  background: #cbd9ce;
+  content: "";
+  transform-origin: left center;
+  animation: mission-route-draw 350ms var(--ease-ui) both;
+}
+
+@keyframes mission-route-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes mission-route-dot { from { opacity: 0; transform: scale(.8); } to { opacity: 1; transform: scale(1); } }
+@keyframes mission-route-upcoming { from { opacity: 0; } to { opacity: 1; } }
+
+.mission-stage-map__route li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  color: #728176;
+  font-size: 12px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.mission-stage-map__count, .mission-stage-map__number, .mission-next__label { font-family: var(--font-meta); font-weight: 600; letter-spacing: .09em; }
+.mission-stage-map__number { font-size: 12px; }
+
+.mission-stage-map__dot {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #a8b9aa;
+  border-radius: 50%;
+  background: #f7f4ee;
+}
+
+.mission-stage-map__route li.is-current { color: #3f6852; font-weight: 700; }
+.mission-stage-map__route li.is-current .mission-stage-map__dot { border-color: #5b806c; background: #5b806c; box-shadow: 0 0 0 4px #dfe9df; }
+.mission-stage-map__route li.is-current .mission-stage-map__dot { animation: mission-route-dot 230ms 130ms var(--ease-ui) both; }
+.mission-stage-map__route li:nth-child(2) { animation: mission-route-upcoming 180ms 210ms ease-out both; }
+.mission-stage-map__route li:nth-child(3) { animation: mission-route-upcoming 180ms 300ms ease-out both; }
+.mission-stage-map__full { display: none; }
+
+.mission-next {
+  grid-area: next;
+  margin-top: 19px;
+  padding: 13px 15px;
+  border: 1px solid #d6e2d5;
+  border-radius: 20px;
+  background: #edf3ea;
+}
+
+.mission-next__label {
+  margin: 0 0 6px;
+  color: #547963;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.mission-next__label span { margin-left: 8px; color: #3f6852; }
+
+.mission-next h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.4;
+}
+
+.mission-next__description {
+  margin: 8px 0 0;
+  color: var(--mission-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.mission-next__button {
+  margin-top: 14px;
+}
+
+@media (min-width: 760px) {
+  .mission-brief__shell { padding: calc(32px + env(safe-area-inset-top)) 40px 48px; }
+  .mission-brief__layout {
+    grid-template-columns: minmax(0, 49%) minmax(0, 51%);
+    grid-template-areas: "heading map" "next map";
+    align-content: center;
+    min-height: min(690px, calc(100svh - 118px));
+    margin-top: 12px;
+  }
+  .mission-heading, .mission-next { max-width: 460px; }
+  .mission-heading__title span { font-size: 21px; }
+  .mission-heading__title strong { font-size: clamp(42px, 4vw, 53px); }
+  .mission-heading__summary { font-size: 15px; }
+  .mission-next { margin-top: 28px; padding: 17px; }
+  .mission-next__button { max-width: 390px; }
+  .mission-stage-map {
+    align-self: center;
+    margin: 0 0 0 clamp(24px, 6vw, 92px);
+    padding: 36px 0 38px 34px;
+  }
+  .mission-stage-map::before {
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    width: min(430px, 100%);
+    aspect-ratio: 1;
+    border: 1px solid rgba(95, 130, 108, .12);
+    border-radius: 50%;
+    box-shadow: 0 0 0 28px rgba(223, 233, 223, .17), 0 0 0 56px rgba(223, 233, 223, .09);
+    content: "";
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+  .mission-stage-map__count { position: relative; margin-bottom: 24px; font-size: 13px; }
+  .mission-stage-map__route { display: block; padding-left: 42px; }
+  .mission-stage-map__route::before { top: 18px; bottom: 40px; left: 5px; width: 1px; height: auto; transform-origin: center top; animation-name: mission-route-draw-vertical; }
+  @keyframes mission-route-draw-vertical { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  .mission-stage-map__route li {
+    position: relative;
+    align-items: flex-start;
+    gap: 3px;
+    min-height: 100px;
+    text-align: left;
+  }
+  .mission-stage-map__number { font-size: 17px; }
+  .mission-stage-map__dot { position: absolute; top: 5px; left: -42px; }
+  .mission-stage-map__short { display: none; }
+  .mission-stage-map__full { display: block; max-width: 250px; font-size: 16px; font-weight: 700; line-height: 1.5; }
+}
+
+@media (max-width: 359px) {
+  .mission-heading__title strong { font-size: 37px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-brief__layout { animation: none; }
+  .mission-stage-map__route::before, .mission-stage-map__route li, .mission-stage-map__route li.is-current .mission-stage-map__dot { animation: none; }
+  .mission-brief__back, .mission-next__button, .mission-next__button svg { transition: none; }
+}
